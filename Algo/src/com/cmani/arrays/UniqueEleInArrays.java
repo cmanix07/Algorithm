@@ -17,23 +17,28 @@ import java.util.Map.Entry;
  */
 public class UniqueEleInArrays {
 
-	 public static int filterDuplicates(int[] arr){
-		    Map<Integer,Integer> countMap=new HashMap<>();
-		    for(int i=0;i<arr.length;i++){
-		      if(countMap.containsKey(arr[i])){
-		        countMap.put(arr[i],countMap.get(arr[i])+1);
-		      }else{
-		        countMap.put(arr[i], 1);
-		      }
-		    }
-		   // System.out.println(countMap);
-		    for(Entry<Integer,Integer> entry:countMap.entrySet()){
-		      if(entry.getValue() == 1){
-		        return entry.getKey();
-		      }
-		    }
-		    return -1;
-		  }
+	public static int filterDuplicates(int[] arr){
+
+		if(arr == null || arr.length == 0) {
+			System.out.println("Empty input array." );
+			return -1;
+		}	       
+
+		Map<Integer,Integer> countMap=new HashMap<>();
+		for(int i=0;i<arr.length;i++){
+			if(countMap.containsKey(arr[i])){
+				countMap.put(arr[i],countMap.get(arr[i])+1);
+			}else{
+				countMap.put(arr[i], 1);
+			}
+		}
+		for(Entry<Integer,Integer> entry:countMap.entrySet()){
+			if(entry.getValue()%2 == 1){
+				return entry.getKey();
+			}
+		}
+		return -1;
+	}
 
 		  public static void main(String[] args) {
 		    int[] arr = {2, 5 ,9 ,1 ,5 ,1 ,8 ,2 ,8};
